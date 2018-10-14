@@ -1,0 +1,98 @@
+#!/bin/bash
+# {{ ansible_managed }}
+
+
+#############
+# VARIABLES #
+#############
+
+REGEX="[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+
+
+#############
+# FUNCTIONS #
+#############
+
+
+function expose_devices {
+  local disks
+  # we use the prepare container to find the partitions to expose
+  disks=$(docker logs ceph-osd-prepare-{{ ansible_hostname }}-devdev${1} |& grep -Eo /dev/disk/by-partuuid/${REGEX} | uniq)
+  for disk in $disks; do
+    DEVICES="--device=$disk "
+  done
+}
+
+function expose_partitions {
+  local partition
+  for partition in Block.wal Block.db Journal; do
+    if docker logs ceph-osd-prepare-{{ ansible_hostname }}-devdev${1} |& grep -Eo "$partition is GPT partition"; then
+      if [[ "$partition" == "Block.wal" ]]; then
+        part=$(docker logs ceph-osd-prepare-{{ ansible_hostname }}-devdev${1} |& grep "$partition is GPT partition" | grep -Eo /dev/disk/by-partuuid/${REGEX} | uniq)
+        DOCKER_ENV="$DOCKER_ENV -e OSD_BLUESTORE_BLOCK_WAL=$part"
+      elif [[ "$partition" == "Block.db" ]]; then
+        part=$(docker logs ceph-osd-prepare-{{ ansible_hostname }}-devdev${1} |& grep "$partition is GPT partition" | grep -Eo /dev/disk/by-partuuid/${REGEX} | uniq)
+        DOCKER_ENV="$DOCKER_ENV -e OSD_BLUESTORE_BLOCK_DB=$part"
+      elif [[ "$partition" == "Journal" ]]; then
+        part=$(docker logs ceph-osd-prepare-{{ ansible_hostname }}-devdev${1} |& grep "$partition is GPT partition" | grep -Eo /dev/disk/by-partuuid/${REGEX} | uniq)
+        DOCKER_ENV="$DOCKER_ENV -e OSD_JOURNAL=$part"
+      fi
+    fi
+  done
+}
+
+#expose_devices $1
+expose_partitions $1
+
+
+########
+# MAIN #
+########
+
+/usr/bin/docker run \
+  --rm \
+  --net=host \
+  --privileged=true \
+  --pid=host \
+  --memory={{ ceph_osd_docker_memory_limit }} \
+  {% if docker_version.split('.')[0] | version_compare('13', '>=') -%}
+  --cpus={{ ceph_osd_docker_cpu_limit }} \
+  {% else -%}
+  --cpu-quota={{ ceph_osd_docker_cpu_limit * 100000 }} \
+  {% endif -%}
+  -v /dev:/dev \
+  -v /etc/localtime:/etc/localtime:ro \
+  -v /var/lib/ceph:/var/lib/ceph \
+  -v /etc/ceph:/etc/ceph \
+  $DOCKER_ENV \
+  {% if ansible_distribution == 'Ubuntu' -%}
+  --security-opt apparmor:unconfined \
+  {% endif -%}
+  {% if not containerized_deployment_with_kv -%}
+  {% else -%}
+  -e KV_TYPE={{ kv_type }} \
+  -e KV_IP={{ kv_endpoint }} \
+  -e KV_PORT={{ kv_port }} \
+  {% endif -%}
+  {% if osd_objectstore == 'filestore' and not dmcrypt -%}
+  -e OSD_FILESTORE=1 \
+  -e OSD_DMCRYPT=0 \
+  {% endif -%}
+  {% if osd_objectstore == 'filestore' and dmcrypt -%}
+  -e OSD_FILESTORE=1 \
+  -e OSD_DMCRYPT=1 \
+  {% endif -%}
+  {% if osd_objectstore == 'bluestore' and not dmcrypt -%}
+  -e OSD_BLUESTORE=1 \
+  -e OSD_DMCRYPT=0 \
+  {% endif -%}
+  {% if osd_objectstore == 'bluestore' and dmcrypt -%}
+  -e OSD_BLUESTORE=1 \
+  -e OSD_DMCRYPT=1 \
+  {% endif -%}
+  -e CLUSTER={{ cluster }} \
+  -e OSD_DEVICE=/dev/${1} \
+  -e CEPH_DAEMON=OSD_CEPH_DISK_ACTIVATE \
+  {{ ceph_osd_docker_extra_env }} \
+  --name=ceph-osd-{{ ansible_hostname }}-dev${1} \
+  {{ ceph_docker_registry }}/{{ ceph_docker_image }}:{{ ceph_docker_image_tag }}

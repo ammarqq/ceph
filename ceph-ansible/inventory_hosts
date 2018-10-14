@@ -1,0 +1,11 @@
+[mons]
+cphmntr[01:03]
+[osds]
+cphstrg01 ceph_crush_root=root ceph_crush_region=Amman ceph_crush_datacenter=HO ceph_crush_rack=RAC2
+cphstrg02 ceph_crush_root=root ceph_crush_region=Amman ceph_crush_datacenter=HO ceph_crush_rack=RAC2
+cphstrg05 ceph_crush_root=root ceph_crush_region=Amman ceph_crush_datacenter=HO ceph_crush_rack=RAC3
+cphstrg06 ceph_crush_root=root ceph_crush_region=Amman ceph_crush_datacenter=HO ceph_crush_rack=RAC3
+cphstrg09 ceph_crush_root=root ceph_crush_region=Amman ceph_crush_datacenter=HO ceph_crush_rack=RAC5
+cphstrg10 ceph_crush_root=root ceph_crush_region=Amman ceph_crush_datacenter=HO ceph_crush_rack=RAC5
+# [mdss]
+# cphadmn[01:03]

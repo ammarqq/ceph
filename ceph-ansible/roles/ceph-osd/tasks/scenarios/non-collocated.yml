@@ -1,0 +1,29 @@
+---
+# use shell rather than docker module
+# to ensure osd disk prepare finishes before
+# starting the next task
+- name: prepare ceph "{{ osd_objectstore }}" non-containerized osd disk(s) non-collocated
+  command: "ceph-disk prepare {{ ceph_disk_cli_options }} {{ item.1 }} {{ item.2 }}"
+  with_together:
+    - "{{ parted_results.results | default([]) }}"
+    - "{{ devices }}"
+    - "{{ dedicated_devices }}"
+  changed_when: false
+  when:
+    - not item.0.get("skipped")
+    - item.0.get("rc", 0) != 0
+    - osd_objectstore == 'filestore'
+    - not containerized_deployment
+
+- name: manually prepare ceph "{{ osd_objectstore }}" non-containerized osd disk(s) with a dedicated device for db and wal
+  command: "ceph-disk prepare {{ ceph_disk_cli_options }} --block.db {{ item.1 }} --block.wal {{ item.2 }} {{ item.3 }}"
+  with_together:
+    - "{{ parted_results.results | default([]) }}"
+    - "{{ dedicated_devices }}"
+    - "{{ bluestore_wal_devices }}"
+    - "{{ devices }}"
+  when:
+    - not item.0.get("skipped")
+    - item.0.get("rc", 0) != 0
+    - osd_objectstore == 'bluestore'
+    - not containerized_deployment

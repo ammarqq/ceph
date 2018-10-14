@@ -1,0 +1,10 @@
+---
+- name: include pre_requisite.yml
+  include: pre_requisite.yml
+
+#- name: include start_agent.yml
+#  include: start_agent.yml
+
+- name: include calamari.yml
+  include: calamari.yml
+#  when: calamari
