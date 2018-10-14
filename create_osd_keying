@@ -1,0 +1,27 @@
+ceph  osd pool create k8sadmin 80
+
+
+ceph --cluster PSceph auth get-or-create client.k8sadmin mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=k8sadmin' -o /etc/ceph/ceph.client.k8sadmin.keyring
+
+
+ceph --cluster PSceph auth get-key client.k8sadmin | base64  (good)
+
+QVFCUktMOWJ5RndKTnhBQXE2NXlRZlRPdnhGeXo0ODdMNU52TlE9PQ==
+
+
+
+kvm
+
+ceph osd pool create libvirt-pool 128 128
+
+ceph osd lspools
+
+ceph auth get-or-create client.libvirt mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=libvirt-pool'
+
+
+[client.libvirt]
+	key = AQASMb9b2V+dKhAADgFRNKl4vTPdFf1pula8Ig==
+
+ceph auth list
+
+

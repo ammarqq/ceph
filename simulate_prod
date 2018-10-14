@@ -1,0 +1,196 @@
+our ceph version v10.2.10 Jewel
+there s twoversions after that
+
+v12.2.8 Luminous
+
+v13.2.2 Mimic
+
+
+Filesystem                 Size  Used Avail Use% Mounted on
+udev                        63G     0   63G   0% /dev
+tmpfs                       13G   42M   13G   1% /run
+/dev/mapper/user--vg-root  149G  2.3G  139G   2% /
+tmpfs                       63G     0   63G   0% /dev/shm
+tmpfs                      5.0M     0  5.0M   0% /run/lock
+tmpfs                       63G     0   63G   0% /sys/fs/cgroup
+/dev/sda1                  472M  106M  343M  24% /boot
+/dev/sdf1                  978G  641G  337G  66% /var/lib/ceph/osd/PSceph-8
+/dev/sdg1                  978G  651G  328G  67% /var/lib/ceph/osd/PSceph-12
+/dev/sde1                  978G  555G  424G  57% /var/lib/ceph/osd/PSceph-2
+tmpfs                       13G     0   13G   0% /run/user/1000
+
+
+
+10.200.223.104 cphstrg02.progressoft.io  cphstrg02
+10.102.1.10 infra01.ha.psos.local       infra01
+10.200.223.101  cphadmn01.progressoft.io        cphadmn01
+10.200.223.102  cphmntr01.progressoft.io        cphmntr01
+10.200.223.103  cphstrg01.progressoft.io        cphstrg01
+10.200.223.104  cphstrg02.progressoft.io        cphstrg02
+10.200.223.106  cphadmn02.progressoft.io        cphadmn02
+10.200.223.105  cphmntr02.progressoft.io        cphmntr02
+10.200.223.107  cphstrg05.progressoft.io        cphstrg05
+10.200.223.108  cphstrg06.progressoft.io        cphstrg06
+10.200.223.110  cphadmn03.progressoft.io        cphadmn03
+10.200.223.109  cphmntr03.progressoft.io        cphmntr03
+10.200.223.111  cphstrg09.progressoft.io        cphstrg09
+10.200.223.112  cphstrg10.progressoft.io        cphstrg10
+
+
+
+ff02::2 ip6-allrouters
+10.102.1.10 infra01.ha.psos.local	infra01
+10.200.223.101  cphadmn01
+10.200.223.102  cphmntr01
+10.200.223.103  cphstrg01
+10.200.223.104  cphstrg02
+10.200.223.106  cphadmn02
+10.200.223.105  cphmntr02
+10.200.223.107  cphstrg05
+10.200.223.108  cphstrg06
+10.200.223.110  cphadmn03
+10.200.223.109  cphmntr03
+10.200.223.111  cphstrg09
+10.200.223.112  cphstrg10
+10.200.194.216    infra1-glance-container-4838e6f9 glance-1
+10.200.207.223    infra2-glance-container-a71f8e7e glance-2
+10.200.220.171    infra3-glance-container-3e15b850 glance-3
+
+ceph admin ,ceph monitor 20G
+
+RAM 2GB for admin 3GB and monitor on prodcution acutal used memory 2 GB
+
+storage 4GB
+
+
+
+
+
+## MGMT VLAN
+auto vlan2000
+iface vlan2000 inet manual
+      vlan_raw_device bond0
+
+## Storage VLAN
+auto vlan2003
+iface vlan2003 inet manual
+     vlan_raw_device bond0
+
+## VLAN 283 OLD
+#auto vlan283
+#iface vlan283 inet manual
+#      vlan-raw-device bond0
+
+###################################
+##
+## Bridge L3 Interfaces
+##
+###################################
+
+## Management Vlan
+auto br-mgmt
+iface br-mgmt inet static
+      bridge_stp off
+      bridge_waitport 0
+      bridge_fd 0
+      bridge_ports bond0
+      address 10.200.31.103
+      netmask 255.255.224.0
+      dns-nameservers 10.200.30.1
+      post-up ip route add default via 10.200.31.254 dev br-mgmt
+      post-up ip route add 10.200.0.0/19 dev br-mgmt table mgmt
+      post-up ip route add default via 10.200.31.254 dev br-mgmt table mgmt
+      post-up ip rule add from 10.200.31.103/32 pref 2000 table mgmt
+
+auto br-strg
+iface br-strg inet static
+         bridge_stp off           
+         bridge_waitport 0        
+         bridge_fd 0              
+         bridge_ports vlan2003
+         address 10.200.223.103    
+         netmask 255.255.224.0    
+         dns-nameservers 10.200.192.10
+         post-up ip route add 10.200.192.0/19 dev br-strg table strg
+         post-up ip route add default via 10.200.223.254 dev br-strg table strg
+         post-up ip rule add from 10.200.223.103/32 pref 2003 table strg
+
+#auto ops
+#iface ops inet static
+#        address 10.102.2.221
+#        netmask 255.255.255.0
+#        bridge_ports  vlan283
+#        bridge_stp off
+#        bridge_fd 9
+#        bridge_hello 2
+#        bridge_maxage 12
+#        post-up ip route add 10.102.2.0/24 dev ops table opst
+#        post-up ip route add default via 10.102.2.254 dev ops table opst
+#        post-up ip rule add from 10.102.2.221/32 pref 2833 table opst
+
+dedicated_devices:
+  - /dev/sdb   50
+  - /dev/sdc   50
+  - /dev/sdd   50
+
+150*6 = 900
+
+20 * 12 = 240
+total = 1140
+
+172.16.38.150  cphadmn01
+172.16.38.151  cphmntr01
+172.16.38.152  cphstrg01
+172.16.38.153  cphstrg02
+172.16.38.154  cphadmn02
+172.16.38.155  cphmntr02
+172.16.38.156  cphstrg05
+172.16.38.157  cphstrg06
+172.16.38.158  cphadmn03
+172.16.38.159  cphmntr03
+172.16.38.160  cphstrg09
+172.16.38.161  cphstrg10
+
+192.168.100.10  cphadmn01
+192.168.100.11  cphmntr01
+192.168.100.12  cphstrg01
+192.168.100.13  cphstrg02
+192.168.100.14  cphadmn02
+192.168.100.15  cphmntr02
+192.168.100.16  cphstrg05
+192.168.100.17  cphstrg06
+192.168.100.18  cphadmn03
+192.168.100.19  cphmntr03
+192.168.100.20  cphstrg09
+192.168.100.21  cphstrg10
+
+[mons]
+cphmntr[01:03]
+[osds]
+cphstrg[01:02]
+cphstrg[05:06]
+cphstrg[09:10]
+[mdss]
+cphadmn[01:03]
+
+I ran into this error while running ansible 2.5.0 on task TASK [ceph-config : create ceph conf directory]
+
+I "fixed" this by updating ./ceph-ansible/plugins/actions/_v2_config_template.py
+
+In the imports I commented out the offending line, and replaced it with two lines that work for ansible 2.5
+
+#from ansible.utils.unicode import to_bytes, to_unicode
+from ansible.module_utils._text import to_text as to_unicode
+from ansible.module_utils._text import to_bytes
+
+
+sudo add-apt-repository ppa:ansible/ansible-2.4
+sudo apt-get update
+
+apt install ansible=2.4.6.0-1ppa~xenial
+
+
+pip install ansible==2.3.2.0an
+
+ceph-mon@cphmntr01
+

@@ -1,0 +1,235 @@
+    cluster e5021703-d675-4cf3-8648-2bd847b589de
+     health HEALTH_WARN
+            clock skew detected on mon.cphmntr03
+            too many PGs per OSD (351 > max 300)
+            Monitor clock skew detected 
+     monmap e1: 3 mons at {cphmntr01=172.16.38.151:6789/0,cphmntr02=172.16.38.155:6789/0,cphmntr03=172.16.38.159:6789/0}
+            election epoch 4, quorum 0,1,2 cphmntr01,cphmntr02,cphmntr03
+      fsmap e4: 1/1/1 up {0=cphadmn02=up:active}, 2 up:standby
+     osdmap e32: 12 osds: 12 up, 12 in
+            flags sortbitwise,require_jewel_osds
+      pgmap v53: 1404 pgs, 3 pools, 2068 bytes data, 20 objects
+            1331 MB used, 568 GB / 569 GB avail
+                1404 active+clean
+root@cphmntr01:/etc/ceph# ceph osd df --cluster PSceph
+ID WEIGHT  REWEIGHT SIZE   USE   AVAIL  %USE VAR  PGS 
+ 0 0.04880  1.00000 51173M  115M 51058M 0.23 0.99 361 
+ 6 0.04390  1.00000 46056M  109M 45946M 0.24 1.04 336 
+ 3 0.04880  1.00000 51173M  111M 51062M 0.22 0.95 365 
+ 7 0.04390  1.00000 46056M  109M 45946M 0.24 1.04 309 
+ 1 0.04880  1.00000 51173M  111M 51062M 0.22 0.95 374 
+ 8 0.04390  1.00000 46056M  109M 45946M 0.24 1.04 312 
+ 4 0.04880  1.00000 51173M  111M 51062M 0.22 0.96 388 
+ 5 0.04390  1.00000 46056M  109M 45946M 0.24 1.05 336 
+ 2 0.04880  1.00000 51173M  111M 51062M 0.22 0.95 361 
+ 9 0.04390  1.00000 46056M  109M 45946M 0.24 1.05 344 
+10 0.04880  1.00000 51173M  111M 51062M 0.22 0.95 406 
+11 0.04390  1.00000 46056M  109M 45946M 0.24 1.04 320 
+              TOTAL   569G 1331M   568G 0.23          
+MIN/MAX VAR: 0.95/1.05  STDDEV: 0.01
+root@cphmntr01:/etc/ceph# ceph osd tree --cluster PSceph
+ID WEIGHT  TYPE NAME          UP/DOWN REWEIGHT PRIMARY-AFFINITY 
+-1 0.55618 root default                                         
+-2 0.09270     host cphstrg06                                   
+ 0 0.04880         osd.0           up  1.00000          1.00000 
+ 6 0.04390         osd.6           up  1.00000          1.00000 
+-3 0.09270     host cphstrg02                                   
+ 3 0.04880         osd.3           up  1.00000          1.00000 
+ 7 0.04390         osd.7           up  1.00000          1.00000 
+-4 0.09270     host cphstrg09                                   
+ 1 0.04880         osd.1           up  1.00000          1.00000 
+ 8 0.04390         osd.8           up  1.00000          1.00000 
+-5 0.09270     host cphstrg01                                   
+ 4 0.04880         osd.4           up  1.00000          1.00000 
+ 5 0.04390         osd.5           up  1.00000          1.00000 
+-6 0.09270     host cphstrg05                                   
+ 2 0.04880         osd.2           up  1.00000          1.00000 
+ 9 0.04390         osd.9           up  1.00000          1.00000 
+-7 0.09270     host cphstrg10                                   
+10 0.04880         osd.10          up  1.00000          1.00000 
+11 0.04390         osd.11          up  1.00000          1.00000 
+root@cphmntr01:/etc/ceph# 
+root@cphmntr01:/etc/ceph# 
+root@cphmntr01:/etc/ceph# 
+root@cphmntr01:/etc/ceph# ceph -s --cluster PSceph
+    cluster e5021703-d675-4cf3-8648-2bd847b589de
+     health HEALTH_WARN
+            clock skew detected on mon.cphmntr03
+            too many PGs per OSD (351 > max 300)
+            Monitor clock skew detected 
+     monmap e1: 3 mons at {cphmntr01=172.16.38.151:6789/0,cphmntr02=172.16.38.155:6789/0,cphmntr03=172.16.38.159:6789/0}
+            election epoch 4, quorum 0,1,2 cphmntr01,cphmntr02,cphmntr03
+      fsmap e4: 1/1/1 up {0=cphadmn02=up:active}, 2 up:standby
+     osdmap e32: 12 osds: 12 up, 12 in
+            flags sortbitwise,require_jewel_osds
+      pgmap v53: 1404 pgs, 3 pools, 2068 bytes data, 20 objects
+            1331 MB used, 568 GB / 569 GB avail
+                1404 active+clean
+
+
+
+#
+journal_size: 5120
+public_network: 172.16.38.0/24
+cluster_network: 172.16.38.0/24
+devices:
+  - /dev/sdb # Currently attached
+  - /dev/sdc # Currently attached
+  
+dedicated_devices:
+  - /dev/sdd
+
+
+#
+journal_size: 5120
+public_network: 172.16.38.0/24
+cluster_network: 172.16.38.0/24
+devices:
+  - /dev/sdb # Currently attached
+  - /dev/sdc # Currently attached
+  - /dev/sdd # Currently attached
+
+dedicated_devices:
+  - /dev/sdb
+  - /dev/sdc
+  - /dev/sdd
+
+
+
+
+before 
+
+Disk /dev/sdc: 50 GiB, 53687091200 bytes, 104857600 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: 7EB1CE1D-BC01-4737-A129-4480A5AEE987
+
+Device        Start       End  Sectors Size Type
+/dev/sdc1  10487808 104857566 94369759  45G Ceph OSD
+/dev/sdc2      2048  10487807 10485760   5G Ceph Journal
+
+Partition table entries are not in disk order.
+
+
+Disk /dev/sdb: 50 GiB, 53687091200 bytes, 104857600 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: FB36E378-8506-4D2C-96F4-F4CD905805E7
+
+Device     Start       End   Sectors Size Type
+/dev/sdb1   2048 104857566 104855519  50G Ceph OSD
+
+
+Disk /dev/sdd: 50 GiB, 53687091200 bytes, 104857600 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: 50D8E4FE-7BF2-4C81-B946-05ED7AE7A27E
+
+Device     Start      End  Sectors Size Type
+/dev/sdd1   2048 10487807 10485760   5G Ceph Journal
+
+
+after
+
+
+root@cphmntr03:~# sudo rm /var/lib/apt/lists/lock
+root@cphmntr03:~# sudo rm /var/cache/apt/archives/lock
+root@cphmntr03:~# sudo rm /var/lib/dpkg/lock
+
+
+
+
+Device        Start       End  Sectors Size Type
+/dev/sdb1  20973568 104857566 83883999  40G Ceph OSD
+/dev/sdb2      2048  20973567 20971520  10G Ceph Journal
+
+Partition table entries are not in disk order.
+
+
+Disk /dev/sdc: 50 GiB, 53687091200 bytes, 104857600 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: 2B61A5B1-699D-4C40-B856-7F076D7829B5
+
+Device        Start       End  Sectors Size Type
+/dev/sdc1  20973568 104857566 83883999  40G Ceph OSD
+/dev/sdc2      2048  20973567 20971520  10G Ceph Journal
+
+Partition table entries are not in disk order.
+
+
+Disk /dev/sdd: 50 GiB, 53687091200 bytes, 104857600 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: 7334EA82-3DC7-40B1-AD6C-01F958F9271F
+
+Device        Start       End  Sectors Size Type
+/dev/sdd1  20973568 104857566 83883999  40G Ceph OSD
+/dev/sdd2      2048  20973567 20971520  10G Ceph Journal
+
+Partition table entries are not in disk order.
+
+
+
+
+root@cphmntr01:~# ceph osd tree
+ID WEIGHT  TYPE NAME          UP/DOWN REWEIGHT PRIMARY-AFFINITY 
+-1 0.70175 root default                                         
+-2 0.11696     host cphstrg05                                   
+ 0 0.03899         osd.0           up  1.00000          1.00000 
+ 6 0.03899         osd.6           up  1.00000          1.00000 
+12 0.03899         osd.12          up  1.00000          1.00000 
+-3 0.11696     host cphstrg06                                   
+ 3 0.03899         osd.3           up  1.00000          1.00000 
+ 8 0.03899         osd.8           up  1.00000          1.00000 
+13 0.03899         osd.13          up  1.00000          1.00000 
+-4 0.11696     host cphstrg01                                   
+ 1 0.03899         osd.1           up  1.00000          1.00000 
+ 5 0.03899         osd.5           up  1.00000          1.00000 
+10 0.03899         osd.10          up  1.00000          1.00000 
+-5 0.11696     host cphstrg02                                   
+ 4 0.03899         osd.4           up  1.00000          1.00000 
+ 7 0.03899         osd.7           up  1.00000          1.00000 
+14 0.03899         osd.14          up  1.00000          1.00000 
+-6 0.11696     host cphstrg09                                   
+ 2 0.03899         osd.2           up  1.00000          1.00000 
+ 9 0.03899         osd.9           up  1.00000          1.00000 
+11 0.03899         osd.11          up  1.00000          1.00000 
+-7 0.11696     host cphstrg10                                   
+15 0.03899         osd.15          up  1.00000          1.00000 
+16 0.03899         osd.16          up  1.00000          1.00000 
+17 0.03899         osd.17          up  1.00000          1.00000 
+root@cphmntr01:~# ceph osd df
+ID WEIGHT  REWEIGHT SIZE   USE   AVAIL  %USE VAR  PGS 
+ 0 0.03899  1.00000 40938M  111M 40827M 0.27 1.02  76 
+ 6 0.03899  1.00000 40938M  109M 40829M 0.27 1.00  64 
+12 0.03899  1.00000 40938M  109M 40829M 0.27 1.00  69 
+ 3 0.03899  1.00000 40938M  110M 40828M 0.27 1.00  74 
+ 8 0.03899  1.00000 40938M  109M 40829M 0.27 1.00  79 
+13 0.03899  1.00000 40938M  109M 40829M 0.27 1.00  79 
+ 1 0.03899  1.00000 40938M  110M 40828M 0.27 1.00  84 
+ 5 0.03899  1.00000 40938M  109M 40829M 0.27 1.00  71 
+10 0.03899  1.00000 40938M  109M 40829M 0.27 1.00  81 
+ 4 0.03899  1.00000 40938M  110M 40828M 0.27 1.00  85 
+ 7 0.03899  1.00000 40938M  109M 40829M 0.27 1.00  78 
+14 0.03899  1.00000 40938M  109M 40829M 0.27 1.00  73 
+ 2 0.03899  1.00000 40938M  110M 40828M 0.27 1.00  78 
+ 9 0.03899  1.00000 40938M  109M 40829M 0.27 1.00  69 
+11 0.03899  1.00000 40938M  109M 40829M 0.27 1.00  92 
+15 0.03899  1.00000 40938M  109M 40829M 0.27 1.00  67 
+16 0.03899  1.00000 40938M  109M 40829M 0.27 1.00  80 
+17 0.03899  1.00000 40938M  109M 40829M 0.27 1.00 105 
+              TOTAL   719G 1973M   717G 0.27          
+MIN/MAX VAR: 1.00/1.02  STDDEV: 0.00
+
+

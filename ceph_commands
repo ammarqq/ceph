@@ -1,0 +1,1009 @@
+Last login: Thu Oct 11 10:32:27 2018 from 172.20.200.119
+user@cphmntr01:~$ sudo su -
+[sudo] password for user: 
+root@cphmntr01:~# history
+ 1000  uname -a
+ 1001  watch ceph -s --cluster PSceph
+ 1002  ssh cphstrg06
+ 1003  watch ceph -s --cluster PSceph
+ 1004  ssh cphstrg06
+ 1005  watch ceph -s --cluster PSceph
+ 1006  ssh cphstrg06
+ 1007  watch ceph -s --cluster PSceph
+ 1008  ssh cphstrg06
+ 1009  ceph auth list --cluster PSceph
+
+ 1015  ceph auth list --cluster PSceph
+ 1016  watch ceph -s --cluster PSceph
+ 1017  ceph -s 
+ 1018  watch ceph -s --cluster PSceph
+ 1019  e5021703-d675-4cf3-8648-2bd847b589de
+ 1020  python -c 'import uuid; print(str(uuid.uuid4()))'
+ 1021  vim /etc/ceph/PSceph.conf 
+ 1022  ceph osd pool create test
+ 1023  ceph osd pool create test --cluster PSceph
+ 1024  ceph osd pool create test 312 --cluster PSceph
+ 1025  watch ceph -s --cluster PSceph
+ 1026  rbd create myvol --size 1G --pool test --cluster PScluster
+ 1027  rbd create myvol --size 1G --pool test --cluster PSceph
+ 1028  rbd ls -l test --cluster PSceph
+ 1029  rbd feature disable --pool test myvol exclusive-lock object-map fast-diff deep-flatten --PSceph
+ 1030  rbd feature disable --pool test myvol exclusive-lock object-map fast-diff deep-flatten --cluster PSceph
+ 1031  watch ceph -s --cluster PSceph
+ 1032  w
+ 1033  watch ceph -s --cluster PSceph
+ 1034  ceph osd lspools --cluster PSceph
+ 1035  cd /tmp/
+ 1036  ls
+ 1037  cd
+ 1038  ls
+ 1039  watch ceph -s --cluster PSceph
+ 1040  cat /etc/hosts
+ 1041  vi /etc/hosts
+ 1042  ssh cphmntr02
+ 1043  ssh cphmntr03
+ 1044  ssh cphadmn01
+ 1045  ssh cphadmn02
+ 1046  ssh cphadmn03
+ 1047  ssh cphstrg01
+ 1048  ssh cphstrg02
+ 1049  ssh cphstrg05
+ 1050  ssh cphstrg06
+ 1051  ssh cphstrg09
+ 1052  ssh cphstrg10
+ 1053  pwd
+ 1054  cd
+ 1055  cat /etc/hosts
+ 1056  watch ceph -s --cluster PSceph
+ 1057  exit
+ 1058  ls
+ 1059  vim /etc/ceph/PSceph.conf 
+ 1060  watch ceph -s --cluster PSceph
+ 1061  cat fetch/{my-cluster-id}/etc/ceph/ceph.client.admin.keyring | grep key|awk '{print $3}' | base64
+ 1062  cat /etc/ceph/ceph.client.admin.keyring | grep key|awk '{print $3}' | base64
+ 1063  cat /etc/ceph/PSceph.client.admin.keyring | grep key|awk '{print $3}' | base64
+ 1064  ceph -s --cluster PSceph
+ 1065  watch ceph -s --cluster PSceph
+ 1066  ceph lspool
+ 1067  ceph lspool --cluster PSceph
+ 1068  osd 
+ 1069  ceph osd lspools --cluster PSceph
+ 1070  cd /tmp/
+ 1071  ls
+ 1072  ll
+ 1073  cephosd getcrushmap -o /tmp crush-compiled
+ 1074  ceph osd getcrushmap -o /tmp crush-compiled
+ 1075  ceph osd getcrushmap -o /tmp/crush-compiled
+ 1076  ceph osd getcrushmap -o /tmp/crush-compiled --cluster PSceph
+ 1077  crushtool -d /tmp/crush-compiled -o /tmp/crush-compiled 
+ 1078  file /tmp/crush-compiled 
+ 1079  cat /tmp/crush-compiled 
+ 1080  cat /tmp/crush-compiled  | grep ^#
+ 1081  cat /tmp/crush-compiled 
+ 1082  ceph osd lspools --cluster PSceph
+ 1083  cat /etc/ceph/PSceph.client.admin.keyring | grep key|awk '{print $3}' | base64
+ 1084  cat /etc/ceph/PSceph.client.admin.keyring
+ 1085  echo AQAJIrFaz5WgDxAAMIBcyuDb+7ZZuXAr+y8Jkg== | base64
+ 1086  top
+ 
+ 1089  ceph --cluster PSceph auth get-key client.admin | base64 (good)
+
+QVFESDc3NWIvaTJhQlJBQWJQYzhVSHVmQUl1TnhhaVl2OEc4dnc9PQ==
+
+
+ 1090  ceph --cluster PSceph auth get-key client.test | base64
+ 1091  ceph osd lspools --cluster PSceph
+ 1092  ceph --cluster PSceph osd pool delete test
+ 1093  ceph --cluster PSceph osd pool delete test test --yes-i-really-really-mean-it
+ 1094  ceph osd lspools --cluster PSceph
+
+ 1095  ceph --cluster PSceph osd pool create k8sadmin 312 (good)
+ 1096  ceph osd lspools --cluster PSceph
+
+ 1097  
+ 1098  ceph --cluster PSceph auth get-or-create client.k8sadmin mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=k8sadmin' -o ceph.client.k8sadmin.keyring
+
+
+ 1099  ceph --cluster PSceph auth get-key client.k8sadmin | base64
+ 1100  ceph --cluster PSceph auth list
+ 1101  ceph -s --cluster PSceph
+ 1102  ceph --cluster PSceph auth list
+ 1103  ceph --cluster PSceph osd pool create kube 1024 1024
+ 1104  ceph --cluster PSceph auth get-or-create client.kube mon 'allow r' osd 'allow rwx pool=kube'
+ 1105  ceph --cluster PSceph auth get-key client.kube
+ 1106  exit
+ 1107  ceph --cluster PSceph osd pool list
+ 1108  ceph --cluster PSceph osd pool ls
+ 1109  ceph --cluster PSceph osd pool delete cephfs_data cephfs_data --yes-i-really-really-mean-it
+ 1110  ceph --cluster PSceph osd pool delete kube kube --yes-i-really-really-mean-it
+ 1111  ceph --cluster PSceph osd pool list
+ 1112  ceph --cluster PSceph osd pool ls
+ 1113  ceph --cluster PSceph osd pool delete k8sadmin k8sadmin --yes-i-really-really-mean-it
+ 1114  ceph --cluster PSceph osd pool create k8sadmin 1024 1024
+ 1115  ceph --cluster PSceph auth get-or-create client.k8sadmin mon 'allow r' osd 'allow rwx pool=k8sadmin'
+ 1116  ceph --cluster PSceph auth get-key client.k8sadmin
+ 1117  exit
+ 1118  ls
+ 1119  rm -rf aaa ceph.client.k8sadmin.keyring
+ 1120  cd /etc/ceph/
+ 1121  ;s
+ 1122  ls
+ 1123  cd ceph.d/
+ 1124  ls
+ 1125  cd ..
+ 1126  ls
+ 1127  ceph osd lspools --cluster PSceph
+ 1128  ceph osd pool delete k8sadmin
+ 1129  ceph osd pool delete k8sadmin --cluster PSceph
+ 1130  ceph osd pool delete k8sadmin k8sadmin --cluster PSceph  --yes-i-really-really-mean-it
+ 1131  ceph osd lspools --cluster PSceph
+ 1132  ceph -s --cluster PSceph
+ 1133  exit
+ 1134  ceph --cluster PSceph osd pool create k8sadmin 312 312
+ 1135  ceph --cluster PSceph auth get-or-create client.k8sadmin mon 'allow r' osd 'allow rwx pool=k8sadmin'
+ 1136  ceph --cluster PSceph auth get-key client.k8sadmin
+ 1137  ceph --cluster PSceph osd pool create k8sdev 312 312
+ 1138  ceph --cluster PSceph auth get-or-create client.k8sadmin mon 'allow r' osd 'allow rwx pool=k8sdev'
+ 1139  ceph --cluster PSceph auth get-or-create client.k8sdev mon 'allow r' osd 'allow rwx pool=k8sdev'
+ 1140  ceph --cluster PSceph auth get-key client.k8sdev
+ 1141  ceph --cluster PSceph auth get-key client.admin
+ 1142  ceph osd lspools --cluster PSceph
+ 1143  cd /etc/ceph/
+ 1144  ls
+ 1145  cd ceph.d/
+ 1146  ls
+ 1147  lks -al
+ 1148  ls -al
+ 1149  cd ..
+ 1150  ls
+ 1151  ls -altr
+ 1152  ceph --cluster PSceph auth list
+ 1153  exit
+ 1154  ceph --cluster PSceph auth list
+ 1155  pwd
+ 1156  ls
+ 1157  vi cruch_decompiled
+ 1158  cat /etc/ceph/PSceph.c
+ 1159  cat /etc/ceph/PSceph.conf 
+ 1160  cp cruch_decompiled /tmp/cruch_decompiled
+ 1161  crushtool -c /tmp/crush-decompiled -o /tmp/crush-compiled
+ 1162  mv cruch_decompiled crush-decompiled
+ 1163  cd /tmp/
+ 1164  mv cruch_decompiled crush-decompiled
+ 1165  crushtool -c /tmp/crush-decompiled -o /tmp/crush-compiled
+ 1166  ceph osd setcrushmap -i  /tmp/crush-compiled
+ 1167  ceph osd setcrushmap -i  /tmp/crush-compiled --cluster PSceph
+ 1168  ceph osd tree --cluster PSceph
+ 1169  ceph -S --cluster PSceph
+ 1170  ceph -s --cluster PSceph
+ 1171  watch ceph -s --cluster PSceph
+ 1172  rados -p k8sadmin ls
+ 1173  rados -p k8sadmin ls --cluster PSceph
+ 1174  rados -p k8sdev ls --cluster PSceph
+ 1175  ceph osd tree --cluster PSceph
+ 1176  rados df
+ 1177  rados --cluster PSceph df
+ 1178  ls
+ 1179  rados --cluster PSceph df
+ 1180  ceph -s --cluster PSceph
+ 1181  rados ls
+ 1182  rados --cluster PSceph ls
+ 1183  rados --cluster PSceph df
+ 1184  cd /var/log/ceph/
+ 1185  ls
+ 1186  tail -f PSceph-mon.cphmntr01.log
+ 1187  ceph health  
+ 1188  ceph health PSceph 
+ 1189  ls
+ 1190  vim crush-decompiled 
+ 1191  clear 
+ 1192  ls
+ 1193  vim /etc/ceph/PSceph.conf 
+ 1194  ceph status 
+ 1195  ceph -w 
+ 1196  ceph 
+ 1197  ls
+ 1198  cd /rtc
+ 1199  cd /etc/
+ 1200  ls
+ 1201  cd ceph/
+ 1202  ls
+ 1203  ll
+ 1204  cd
+ 1205  ceph 
+ 1206  ceph
+ 1207  cd /home
+ 1208  lks
+ 1209  ls
+ 1210  cd
+ 1211  su - user
+ 1212  su - cephos 
+ 1213  su - user
+ 1214  ceph -s
+ 1215  ceph -s --cluster PSceph
+ 1216  su - user
+ 1217  su - cephos
+ 1218  ceph -s --cluster PSceph
+ 1219  ceph --cluster PSceph osd pool create images 312 312
+ 1220  ceph --cluster PSceph auth get-or-create client.images mon 'allow r' osd 'allow rwx pool=images'
+ 1221  ceph --cluster PSceph auth get-key client.images
+ 1222  ceph --cluster PSceph osd pool create volumes 312 312
+ 1223  ceph --cluster PSceph auth get-or-create client.volumes mon 'allow r' osd 'allow rwx pool=volumes'
+ 1224  ceph --cluster PSceph auth get-key client.volumes
+ 1225  ceph --cluster PSceph osd pool create vms 312 312
+ 1226  ceph --cluster PSceph auth get-or-create client.vms mon 'allow r' osd 'allow rwx pool=vms'
+ 1227  ceph --cluster PSceph auth get-key client.vms
+ 1228  pwd
+ 1229  cd
+ 1230  cd /etc/ceph/
+ 1231  ls
+ 1232  ll
+ 1233  cd
+ 1234  ls
+ 1235  ll
+ 1236  cd /etc
+ 1237  ls
+ 1238  cd ceph/
+ 1239  ls
+ 1240  ll
+ 1241  cd ceph.d/
+ 1242  ls
+ 1243  ll
+ 1244  cd
+ 1245  ceph osd pool delete vms
+ 1246  ceph osd pool delete vms --cluster PSceph
+ 1247  ceph osd pool delete vms --cluster PSceph --yes-i-really-really-mean-it
+ 1248  ceph osd pool delete vms vms --cluster PSceph --yes-i-really-really-mean-it
+ 1249  ceph osd pool delete volumes volumes --cluster PSceph --yes-i-really-really-mean-it
+ 1250  ceph osd pool delete images images --cluster PSceph --yes-i-really-really-mean-it
+ 1251  ceph osd pool create images 312 --cluster PSceph
+ 1252  sudo ceph auth get-or-create client.images mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=images' -o /etc/ceph/ceph.client.images.keyring --cluster PSceph
+ 1253  cd /etc/ceph/
+ 1254  ls
+ 1255  ll
+ 1256  rm -rf ceph.client.images.keyring 
+ 1257  ll
+ 1258  sudo ceph auth get-or-create client.images mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=images' -o /etc/ceph/ceph.client.images.keyring --cluster PSceph
+ 1259  ll
+ 1260  sudo ceph auth delete client.images --cluster PSceph
+ 1261  sudo ceph auth remove client.images --cluster PSceph
+ 1262  sudo ceph auth rm client.images --cluster PSceph
+ 1263  cd /etc/ceph/
+ 1264  ls
+ 1265  ll
+ 1266  ceph -s --cluster PSceph
+ 1267  ls
+ 1268  ceph auth rm client.images --cluster PSceph
+ 1269  ceph osd lspools
+ 1270  ceph osd lspools --cluster PSceph
+ 1271  ceph osd pool delete images --cluster PSceph
+ 1272  ceph osd pool delete images images --cluster PSceph --yes-i-really-really-mean-it
+ 1273  ceph osd lspools --cluster PSceph
+ 1274  ls
+ 1275  ll
+ 1276  ceph aut rm client.images.keyring --cluster PSceph
+ 1277  ceph aut rm client.images --cluster PSceph
+ 1278  ceph auth rm client.images --cluster PSceph
+ 1279  ls
+ 1280  ll
+ 1281  ceph auth rm images --cluster PSceph
+ 1282  sudo ceph auth caps client.images mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=images' -o /etc/ceph/ceph.client.images.keyring --cluster PSceph
+ 1283  sudo ceph auth caps client.vms mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=vms' -o /etc/ceph/ceph.client.vms.keyring --cluster PSceph
+ 1284  sudo ceph auth caps client.volumes mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=volumes' -o /etc/ceph/ceph.client.volumes.keyring --cluster PSceph
+ 1285  ceph osd lspools
+ 1286  ceph osd lspools --cluster PSceph
+ 1287  ls
+ 1288  ll
+ 1289  cat ceph.client.images.keyring 
+ 1290  ceph osd pool create images 312 --cluster PSceph
+ 1291  sudo ceph auth get-or-create client.images mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=images' -o /etc/ceph/ceph.client.images.keyring --cluster PSceph
+ 1292  ceph osd pool create volumes 312 --cluster PSceph
+ 1293  sudo ceph auth get-or-create client.volumes mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=volumes, allow rx pool=images' -o /etc/ceph/ceph.client.volumes.keyring --cluster PSceph
+ 1294  sudo ceph auth caps client.volumes mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=volumes' -o /etc/ceph/ceph.client.volumes.keyring --cluster PSceph
+ 1295  ceph osd pool create vms 312 --cluster PSceph
+ 1296  sudo ceph auth get-or-create client.nova mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=vms, allow rwx pool=volumes, allow rx pool=images' -o /etc/ceph/ceph.client.nova.keyring --cluster PSceph
+ 1297  LS
+ 1298  LL
+ 1299  ll
+ 1300  ls
+ 1301  ll
+ 1302  cat ceph.client.images.keyring 
+ 1303  cat ceph.client.volumes.keyring 
+ 1304  cat ceph.client.vms.keyring 
+ 1305  cat ceph.client.images.keyring 
+ 1306  ceph osd lspools
+ 1307  ceph osd lspools --cluster PSceph
+ 1308  ceph osd pool delete vms vms 
+ 1309  ceph osd pool delete vms vms --cluster PScpeh
+ 1310  ceph osd pool delete vms --cluster PScpeh
+ 1311  ceph osd pool delete vms --cluster PSceph
+ 1312  ceph osd pool delete vms vms yes-i-really-really-mean-it--cluster PSceph
+ 1313  ceph osd pool delete vms vms yes-i-really-really-mean-it --cluster PSceph
+ 1314  ceph osd pool delete vms vms --yes-i-really-really-mean-it --cluster PSceph
+ 1315  ceph osd lspools --cluster PSceph
+ 1316  ceph osd pool delete volumes volumes --yes-i-really-really-mean-it --cluster PSceph
+ 1317  ceph osd lspools --cluster PSceph
+ 1318  ceph osd pool delete images images --yes-i-really-really-mean-it --cluster PSceph
+ 1319  ceph osd lspools --cluster PSceph
+ 1320  cd
+ 1321  cd /etc/ceph/
+ 1322  ls
+ 1323  ll
+ 1324  rm -rf ceph.client.images.keyring ceph.client.vms.keyring ceph.client.volumes.keyring 
+ 1325  ls
+ 1326  ll
+ 1327  ceph osd pool create images 312 --cluster PSceph
+ 1328  sudo ceph auth get-or-create client.images mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=images' -o /etc/ceph/ceph.client.images.keyring --cluster PSceph
+ 1329  ceph osd pool create volumes 312 --cluster PSceph
+ 1330  sudo ceph auth get-or-create client.volumes mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=volumes, allow rx pool=images' -o /etc/ceph/ceph.client.volumes.keyring --cluster PSceph
+ 1331  sudo ceph auth cap client.volumes mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=volumes, allow rx pool=images' -o /etc/ceph/ceph.client.volumes.keyring --cluster PSceph
+ 1332  sudo ceph auth caps client.volumes mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=volumes, allow rx pool=images' -o /etc/ceph/ceph.client.volumes.keyring --cluster PSceph
+ 1333  ceph osd pool create vms 312 --cluster PSceph
+ 1334  sudo ceph auth get-or-create client.nova mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=vms, allow rwx pool=volumes, allow rx pool=images' -o /etc/ceph/ceph.client.nova.keyring --cluster PSceph
+ 1335  ll
+ 1336  sudo ceph auth caps client.volumes mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=volumes, allow rx pool=images' -o /etc/ceph/ceph.client.volumes.keyring --cluster PSceph
+ 1337  ls
+ 1338  ll
+ 1339  cat ceph.client.images.keyring 
+ 1340  cat ceph.client.nova.keyring 
+ 1341  l
+ 1342  ll
+ 1343  rm -rf ceph.client.images.keyring 
+ 1344  rm -rf ceph.client.volumes.keyring 
+ 1345  ll
+ 1346  cd ceph.d/
+ 1347  ls
+ 1348  ll
+ 1349  cd
+ 1350  cd /etc/ceph/
+ 1351  ls
+ 1352  ll
+ 1353  ceph osd lspools
+ 1354  ceph osd lspools --cluster PSceph
+ 1355  ceph osd pool delete vms --cluster PSceph
+ 1356  ceph osd pool delete vms vms --yes-i-really-really-mean-it --cluster PSceph
+ 1357  ceph osd pool delete vms --cluster PSceph
+ 1358  ceph osd pool delete volumes volumes --yes-i-really-really-mean-it --cluster PSceph
+ 1359  ceph osd pool delete images images --yes-i-really-really-mean-it --cluster PSceph
+ 1360  ceph osd lspools --cluster PSceph
+ 1361  ceph osd pool create images 312 --cluster PSceph
+ 1362  sudo ceph auth get-or-create client.images mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=images' -o /etc/ceph/ceph.client.images.keyring --cluster PSceph
+ 1363  ll
+ 1364  ceph osd pool create vms 312 --cluster PSceph
+ 1365  sudo ceph auth get-or-create client.nova mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=vms, allow rwx pool=volumes, allow rx pool=images' -o /etc/ceph/ceph.client.nova.keyring --cluster PSceph
+ 1366  ceph osd pool create volumes 312 --cluster PSceph
+ 1367  sudo ceph auth get-or-create client.volumes mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=volumes, allow rx pool=images' -o /etc/ceph/ceph.client.volumes.keyring --cluster PSceph
+ 1368  ll
+ 1369  ssh root@10.200.10.56
+ 1370  ssh yasser@10.200.10.56
+ 1371  ls
+ 1372  ls -l 
+ 1373  scp ceph.client.*  esuradi@10.200.10.56:.
+ 1374  sudo bash 
+ 1375  ceph  -s --cluster PSceph 
+ 1376  '
+ 1377  cat /etc/ceph/PSceph.c
+ 1378  cat /etc/ceph/PSceph.conf 
+ 1379  rbd ls images
+ 1380  cd /etc/ceph/
+ 1381  ls
+ 1382  cd ceph.d/
+ 1383  ls
+ 1384  vi PSceph.conf 
+ 1385  ks
+ 1386  ls
+ 1387  cd ..
+ 1388  ls
+ 1389  vi PSceph.conf 
+ 1390  vi /etc/ceph/PSceph.conf 
+ 1391  ceph auth list --cluster ceph
+ 1392  ceph auth list --cluster PSceph
+ 1393  ceph auth list --cluster client
+ 1394  ceph auth list --cluster-client
+ 1395  ceph auth list --cluster client
+ 1396  ceph auth list --cluster PSceph
+ 1397  ceph health
+ 1398  ceph health --cluster PSceph
+ 1399  rbd list 
+ 1400  rbd list  --cluster PSceph
+ 1401  ceph -s --cluster PSceph
+ 1402  ceph auth get-key client.cinder | ssh 10.200.31.16 tee client.cinder.key
+ 1403  ceph auth get-key client.cinder | ssh 10.200.10.56 tee client.cinder.key
+ 1404  ceph auth get-key client.cinder | ssh esuradi@10.200.10.56 tee client.cinder.key
+ 1405  ceph --cluster auth get-key client.cinder | ssh esuradi@10.200.10.56 tee client.cinder.key
+ 1406  rbd list
+ 1407  rbd list --cluster PSceph
+ 1408  rbd info volumes
+ 1409  rbd info volumes --cluster PSceph
+ 1410  rbd ls --cluster PSceph
+ 1411  rbd ls volumes --cluster PSceph
+ 1412  rbd ls volumes
+ 1413  rbd ls volumes --cluster PSceph
+ 1414  sudp ceph
+ 1415  sudp cephos
+ 1416  su-  cephos
+ 1417  su -  cephos
+ 1418  su-  cephos
+ 1419  su -  cephos
+ 1420  rbd ls volumes --cluster PSceph
+ 1421  rbd ls nova --cluster PSceph
+ 1422  rbd ls compute --cluster PSceph
+ 1423  rbd ls images --cluster PSceph 
+ 1424  rbd ls rdp --cluster PSceph 
+ 1425  rbd ls nova --cluster PSceph 
+ 1426  ls
+ 1427  rbd ls nova --cluster PSceph 
+ 1428  rbd ls images --cluster PSceph 
+ 1429  rbd ls vms --cluster PSceph 
+ 1430  vi /etc/ceph/PSceph.conf 
+ 1431  vi /etc/hosts
+ 1432  ssh-copy-id cephos@glance-1
+ 1433  ping glance-1
+ 1434  vi /etc/hosts
+ 1435  ping glance-1
+ 1436  ssh-copy-id cephos@glance-1
+ 1437  ssh  cephos@glance-1
+ 1438  ssh-copy-id cephos@glance-2
+ 1439  ssh  cephos@glance-3
+ 1440  ping glance-3
+ 1441  ping glance-2
+ 1442  ping glance-1
+ 1443  ip r shpw
+ 1444  ip r sh
+ 1445  vi /etc/hosts
+ 1446  ceph-deploy install glance-1
+ 1447  vi /etc/hosts
+ 1448  ceph -s --cluster PSceph
+ 1449  su - cephos
+ 1450  7fcc08145700  0 librados: client.admin initialization error (2) No such file or directory
+ 1451  Error connecting to cluster: ObjectNotFound
+ 1452  cephos@cphmntr01:~$ ceph -s --cluster PSceph
+ 1453  2018-04-10 09:24:26.951270 7fedd9f15700 -1 auth: unable to find a keyring on /etc/ceph/PSceph.client.admin.keyring,/etc/ceph/PSceph.keyring,/etc/ceph/keyring,/etc/ceph/keyring.bin: (2) No such file or directory
+ 1454  2018-04-10 09:24:26.951284 7fedd9f15700 -1 monclient(hunting): ERROR: missing keyring, cannot use cephx for authentication
+ 1455  2018-04-10 09:24:26.951285 7fedd9f15700  0 librados: client.admin initialization error (2) No such file or directory
+ 1456  Error connecting to cluster: ObjectNotFound
+ 1457  cephos@cphmntr01:~$ 
+ 1458  ceph -s --cluster PSceph
+ 1459  ceph osd pool create images  128 
+ 1460  ceph_stable_release
+ 1461  ceph  --cluster PSceph  osd pool create images  128 
+ 1462  ceph  --cluster PSceph  osd pool create sysadmin-images  128 
+ 1463  ceph auth get-or-create client.sysadmin-images mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=sysadmin-images' -o /etc/ceph/ceph.client.sysadmin-images.keyring 
+ 1464  ceph  --cluster PSceph auth get-or-create client.sysadmin-images mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=sysadmin-images' -o /etc/ceph/ceph.client.sysadmin-images.keyring 
+ 1465  scp /etc/ceph/ceph.client.sysadmin-images.keyring cephos@glance-1:/etc/ceph/ceph.client.sysadmin-images.keyring
+ 1466  rbd pool init volumes
+ 1467  rbd pool init volumes --cluster PSceph
+ 1468  rbd --cluster PSceph pool init volumes  
+ 1469  rbd  pool init volumes  
+ 1470  rbd list --cluster PScep
+ 1471  rbd list --cluster PSceph
+ 1472  cat /etc/ceph/ceph.client.volumes.keyring
+ 1473  cd /etc/ceph/
+ 1474  ls
+ 1475  cp PSceph.conf ceph.conf
+ 1476  cd /etc/ceph/
+ 1477  ls
+ 1478  ll
+ 1479  chown ceph:ceph ceph.conf 
+ 1480  ll
+ 1481  exit
+ 1482  cd /etc/ceph/
+ 1483  ls
+ 1484  vi ceph.conf 
+ 1485  exit
+ 1486  ls
+ 1487  cat file 
+ 1488  cd /etc/ceph/
+ 1489  ls
+ 1490  cd ceph.d/
+ 1491  ls
+ 1492  ca..
+ 1493  cd ..
+ 1494  ls
+ 1495  cp  PSceph.client.admin.keyring ceph.client.admin.keyring
+ 1496  rados ls
+ 1497  rados list
+ 1498  histor
+ 1499  history
+ 1500  history | grep rados
+ 1501  rados df
+ 1502  ceph -s --cluster PSceph get auth
+ 1503  ceph -s --cluster PSceph auth get
+ 1504  ceph -s --cluster PSceph auth list
+ 1505  ceph --cluster PSceph auth list
+ 1506  rados df
+ 1507  exit
+ 1508  ls
+ 1509  histroy
+ 1510  hostiry
+ 1511  history
+ 1512  history | grep k8sadmin
+ 1513  ceph --cluster PSceph osd pool create k8stest 312
+ 1514  ceph auth get-or-create client.k8stest mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=k8stest' -o ceph.client.k8stest.keyring
+ 1515  ceph --cluster PSceph auth get-or-create client.k8stestmon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=k8stest' -o ceph.client.k8stest.keyring
+ 1516  ceph auth get-or-create client.k8stest mon 'allow r' osd 'allow rwx pool=k8stest' -o ceph.client.k8stest.keyring
+ 1517  ceph --cluster PSceph auth list
+ 1518  ceph --cluster PSceph auth get-or-create client.k8stest mon 'allow r' osd 'allow rwx pool=k8stest' -o ceph.client.k8stest.keyring
+ 1519  ceph --cluster PSceph auth delete client.k8stest
+ 1520  ceph --cluster PSceph auth del client.k8stest
+ 1521  ceph --cluster PSceph auth get-or-create client.k8stest mon 'allow r' osd 'allow rwx pool=k8stest' -o ceph.client.k8stest.keyring
+ 1522  ceph --cluster PSceph auth list
+ 1523  rbd -p volumes ls
+ 1524  rbd -p volumes ls |grep 9538ea4b-fb59-4817-873a-c7745449ffb5
+ 1525  rbd -p volumes info volume-9538ea4b-fb59-4817-873a-c7745449ffb5
+ 1526  rbd snap ls
+ 1527  rbd snap ls image
+ 1528  rbd snap ls images/c731103d-abf4-427c-9f30-889d5a43d54f@snap
+ 1529  rbd snap ls rbd/c731103d-abf4-427c-9f30-889d5a43d54f
+ 1530  rbd -p images ls
+ 1531  find / -name fd257e6c-5ea6-4233-a988-ca15beddf5ea
+ 1532  find / -name e8d647bf-a045-4841-998e-30d66394cd5e
+ 1533  find / -name images
+ 1534  history
+ 1535  ceph --cluster PSceph
+ 1536  ceph --cluster PSceph pool
+ 1537  ceph --cluster PSceph pools
+ 1538  ceph --cluster PSceph poolsrados ls
+ 1539  rados ls
+ 1540  rbd -p volumes ls
+ 1541  rados df
+ 1542  rbd list --cluster PSceph
+ 1543  ceph  --cluster PSceph  osd pool list
+ 1544  ceph  --cluster PSceph  osd pool ls
+ 1545  ceph  --cluster PSceph  osd pool df
+ 1546  ceph  --cluster PSceph  osd pool stats
+ 1547  ceph osd lspools
+ 1548  rados df
+ 1549  rados df --help
+ 1550  rados df exit
+ 1551  exit
+ 1552  rados ls
+ 1553  rados ls kubedev
+ 1554  history
+ 1555  rados df
+ 1556  history
+ 1557  rados df
+ 1558  rados ls k8sdev
+ 1559  rados ls --pool k8sdev
+ 1560  rados df
+ 1561  rbd ls k8sdev
+ 1562  rbd ls k8sdev | grep d707
+ 1563  rbd ls k8sdev | grep a067
+ 1564  rbd ls k8sdev | grep a068
+ 1565  telnet 10.201.45.20 53
+ 1566  rbd list --cluster PSceph
+ 1567  ceph  --cluster PSceph  osd pool stats
+ 1568  df -h
+ 1569  exit
+ 1570  ceph osd lspools
+ 1571  rados df
+ 1572  rados df -h
+ 1573  rados df
+ 1574  ceph -s
+ 1575  rados df
+ 1576  ceph -s
+ 1577  rados df
+ 1578  ceph osd pool list
+ 1579  ceph osd pool ls
+ 1580  ceph df
+ 1581  ceph osd tree
+ 1582  cd /opt/
+ 1583  ls
+ 1584  df -h
+ 1585  ceph health detail
+ 1586  ceph df
+ 1587  df -h
+ 1588  ceph health detail
+ 1589  ceph df
+ 1590  ceph
+ 1591  ceph health detials
+ 1592  ceph health detial
+ 1593  ceph health detail
+ 1594  exit
+ 1595  ceph health detail
+ 1596  ceph df
+ 1597  watch ceph df
+ 1598  ceph health detail
+ 1599  watch ceph df
+ 1600  ceph health
+ 1601  ceph health details
+ 1602  ceph health detail
+ 1603  ceph df
+ 1604  ceph health details
+ 1605  ceph health detail
+ 1606  ceph df
+ 1607  ceph osd tree
+ 1608  ceph status
+ 1609  ceph health
+ 1610  ceph
+ 1611  ceph -w
+ 1612  ceph df
+ 1613  ceph osd stat
+ 1614  ceph osd tree
+ 1615  ceph
+ 1616  rados df
+ 1617  rados df -h
+ 1618  rados df
+ 1619  rados df -h
+ 1620  rados dfh
+ 1621  rados df -h
+ 1622  rados df 
+ 1623  rados df -h
+ 1624  ceph health
+ 1625  ceph halth
+ 1626  rados df
+ 1627  ceph health
+ 1628  ceph health info
+ 1629  ceph health details
+ 1630  ceph health detail
+ 1631  ls
+ 1632  df -h
+ 1633  rados df
+ 1634  ceph health detail
+ 1635  ceph osd lspools
+ 1636  ceph health detail
+ 1637  rados df 
+ 1638  rados df
+ 1639  ceph status
+ 1640  ceph health
+ 1641  rados df
+ 1642  ceph health
+ 1643  rbd resize --size 3397632 volumes
+ 1644  rbd --pool=volumes --size=3397632 resize volumes
+ 1645  rbd --pool=volumes --size=3397632 resize
+ 1646  rbd volumes --size=3397632 resize
+ 1647  rbd  --size=3397632 resize volumes
+ 1648  rbd --help
+ 1649  rbd info
+ 1650  rbd info volumes
+ 1651  rbd info rbd/volumes
+ 1652  ceph health
+ 1653  ceph status
+ 1654  rados df
+ 1655  rbd info PSCEPH/volumes
+ 1656  rbd info PS-CEPH/volumes
+ 1657  ceph status detail
+ 1658  ceph health detail
+ 1659  vim /etc/ceph/PSceph.conf 
+ 1660  rbd info PSceph/volumes
+ 1661  cd etc/ceph
+ 1662  cd /etc/ceph
+ 1663  cat PSceph.c
+ 1664  cat PSceph.conf 
+ 1665  cat ceph.conf 
+ 1666  rados df
+ 1667  ceph status
+ 1668  ceph osd lspools
+ 1669  ceph osd lspool
+ 1670  ceph osd df
+ 1671  ceph osd pool -- help
+ 1672  ceph osd pool --help
+ 1673  ceph osd pool stats
+ 1674  ceph quorum_status
+ 1675  rados df
+ 1676  ceph osd pool volumes
+ 1677  ceph osd pool get volumes size
+ 1678  ceph osd pool get volumes min_size
+ 1679  rados df
+ 1680  ceph health
+ 1681  ceph status
+ 1682  ceph osd pool get  k8stest  min_size
+ 1683  ceph osd pool get  k8stest  size
+ 1684  ceph osd pool set  k8stest  size 2
+ 1685  ceph osd pool get  k8stest  size
+ 1686  ceph osd pool get  k8stest  min_size
+ 1687  rados df
+ 1688  ceph osd pool set  k8sadmin  size 2
+ 1689  ceph osd pool get  k8stest  min_size
+ 1690  ceph osd pool get  k8stest  size
+ 1691  rados df
+ 1692  ceph osd pool set  k8sdev  size 2
+ 1693  ceph osd pool get  k8sdev  size
+ 1694  ceph osd pool get  k8sdev  min_size
+ 1695  rados df
+ 1696  ceph status
+ 1697  ceph osd pool set  images  size 2
+ 1698  ceph osd pool get  iamges  min_size
+ 1699  ceph osd pool get  images  min_size
+ 1700  ceph osd pool get  images  size
+ 1701  ceph status
+ 1702  rados df
+ 1703  ceph osd pool set  k8sdev  min_size 1
+ 1704  ceph osd pool set  k8sdev  size 1
+ 1705  ceph osd pool set  k8sadmin  min_size 1
+ 1706  ceph osd pool set  k8sadmin  ]size 1
+ 1707  ceph osd pool set  k8sadmin  size 1
+ 1708  ceph osd pool set  k8stest  min_size 1
+ 1709  ceph osd pool set  k8stest  size 1
+ 1710  rados df
+ 1711  ceph osd pool delete k8stest
+ 1712  ceph osd pool delete k8stest --yes-i-really-really-mean-it
+ 1713  ceph osd pool delete k8stest --yes-i-really-really-mean-it.
+ 1714  ceph osd pool delete k8stest k8stest --yes-i-really-really-mean-it.
+ 1715  ceph osd pool delete k8stest k8stest --yes-i-really-really-mean-it
+ 1716  rados df
+ 1717  ceph status
+ 1718  rados df
+ 1719  ceph osd pool get-quota k8sadmin
+ 1720  ceph osd pool get-quota volumes
+ 1721  ceph status
+ 1722  rados df
+ 1723  history
+ 1724  ceph osd lspools
+ 1725  ceph osd df
+ 1726  ceph status
+ 1727  ceph heal details
+ 1728  ceph heal detail
+ 1729  ceph tell ods
+ 1730  ceph tell osd bench*
+ 1731  ceph tell osd 15
+ 1732  ceph tell osd volumes
+ 1733  ceph pg dump
+ 1734  ceph pg dump > ceph.txt
+ 1735  ceph df detail
+ 1736  rados df
+ 1737  ceph osd pool get
+ 1738  ceph osd pool get volumes
+ 1739  ceph osd pool get volumes pg
+ 1740  ceph osd pool get volumes pg_num
+ 1741  ceph osd pool get k8sadmin pg_num
+ 1742  ceph osd pool get images pg_num
+ 1743  ceph osd pool get k8sdev pg_num
+ 1744  ceph status
+ 1745  ceph health detail
+ 1746  ceph osd pool get volumes pgceph osd pool get volumes pgceph osd pool get volumes pgceph osd pool get volumes pg
+ 1747  ceph osd set pool k8sadmin pg_num 900
+ 1748  ceph osd pool set k8sadmin pg_num 900
+ 1749  ceph osd pool set k8sdev pg_num 900
+ 1750  ceph osd pool set images pg_num 900
+ 1751  ceph osd pool set k8sadmin pg_num 1800
+ 1752  ceph osd pool set k8sadmin pg_num 936
+ 1753  ceph osd pool set k8sdev pg_num 936
+ 1754  ceph osd pool set volumes pg_num 600
+ 1755  ceph health
+ 1756  ceph status
+ 1757  ceph -s
+ 1758  rados df
+ 1759  ceph status
+ 1760  ceph health detail
+ 1761  top
+ 1762  df -h
+ 1763  ceph health detail
+ 1764  ceph osd pool set volumes pg_num 312
+ 1765  ceph osd pool set images pg_num 312
+ 1766  ceph osd pool set k8sadmin pg_num 312
+ 1767  ceph osd pool set k8sdev pg_num 312
+ 1768  c
+ 1769  ceph health detail
+ 1770  ceph osd pool set k8sadmin pgp_num 936
+ 1771  ceph osd pool set k8sdev pgp_num 936
+ 1772  ceph osd pool set images pgp_num 900
+ 1773  ceph osd pool set volumes pgp_num 60
+ 1774  ceph osd pool set volumes pgp_num 600
+ 1775  ceph -s
+ 1776  ceph health detail
+ 1777  rados df
+ 1778  ceph health detail
+ 1779  ping 10.200.223.103
+ 1780  ping 10.200.223.104
+ 1781  ping 10.200.31.10
+ 1782  ping 10.200.223.103
+ 1783  ping 10.200.223.105
+ 1784  ceph -s
+ 1785  ceph health detail
+ 1786  ceph -s
+ 1787  ping 10.200.223.103
+ 1788  ping 10.200.223.104
+ 1789  ping 10.200.31.104
+ 1790  ping 10.200.31.103
+ 1791  ping 10.200.31.104
+ 1792  ping 10.200.31.103
+ 1793  ping 10.200.31.104
+ 1794  ping 10.200.31.103
+ 1795  ping 10.200.223.13
+ 1796  ping 10.200.31.104
+ 1797  ping 10.200.223.102
+ 1798  ping 10.200.223.103
+ 1799  ceph -s
+ 1800  ceph health detail
+ 1801  rados df
+ 1802  watch ceph -s
+ 1803  rados df
+ 1804  watch ceph -s
+ 1805  rados df
+ 1806  watch ceph -s
+ 1807  rados df
+ 1808  watch ceph -s
+ 1809  rados df
+ 1810  watch ceph -s
+ 1811  exit
+ 1812  passwd
+ 1813  passwd user
+ 1814  nano /root/.ssh/authorized_keys
+ 1815  exit
+ 1816  nano /etc/ssh/sshd_config
+ 1817  service sshd restart
+ 1818  nano /root/.ssh/authorized_keys
+ 1819  exit
+ 1820  ceph status
+ 1821  ceph health
+ 1822  radosdf
+ 1823  rados df
+ 1824  rados df -h
+ 1825  ceph health
+ 1826  rados df
+ 1827  rados 
+ 1828  rados df -h
+ 1829  rados dfh
+ 1830  ceph quorum status
+ 1831  ceph quorum_status
+ 1832  ceph -w
+ 1833  ceph df
+ 1834  ceph osd stat
+ 1835  ceph osd tree
+ 1836  ceph mon status
+ 1837  ceph mon stat
+ 1838  visudo
+ 1839  ceph df
+ 1840  ceph health detail
+ 1841  ceph osd tree
+ 1842  rados df
+ 1843  ceph df
+ 1844  006c s
+ 1845  ls
+ 1846  cat crush-d0065 co006d p0069 led
+ 1847  cat crush-decompiled
+ 1848  ceph osd tree
+ 1849  crushtool -c crush-decompiled -o crush-compiled
+ 1850  ceph osd setcrushmap -i crush-compiled
+ 1851  ceph osd tree
+ 1852  ceph -s
+ 1853  ceph -w
+ 1854  ceph -s
+ 1855  ceph df
+ 1856  ceph health detail
+ 1857  ceph health
+ 1858  ceph status
+ 1859  ceph osd tree
+ 1860  ceph status
+ 1861  while true; do ceph -s; sleep 5; done
+ 1862  ceph df
+ 1863  ceph health detail
+ 1864  while true; do ceph -s; sleep 5; done
+ 1865  cd /opt
+ 1866  sh df-osd.sh
+ 1867  while true; do ceph -s; sleep 5; done
+ 1868  ceph health detail
+ 1869  while true; do ceph -s; sleep 5; done
+ 1870  ceph osd reweight-by-utilization
+ 1871  while true; do ceph -s; sleep 5; done
+ 1872  ceph health detail
+ 1873  while true; do ceph -s; sleep 5; done
+ 1874  ceph df
+ 1875  ceph health detail
+ 1876  while true; do ceph -s; sleep 5; done
+ 1877  ceph health detail
+ 1878  ceph osd tree
+ 1879  ceph health detail
+ 1880  while true; do ceph -s; sleep 5; done
+ 1881  ceph health detail
+ 1882  ceph osd tree
+ 1883  while true; do ceph -s; sleep 5; done
+ 1884  ceph health detail
+ 1885  while true; do ceph -s; sleep 5; done
+ 1886  ceph health detail
+ 1887  ceph osd tree
+ 1888  while true; do ceph -s; sleep 5; done
+ 1889  ceph health detail
+ 1890  ceph osd tree
+ 1891  while true; do ceph -s; sleep 5; done
+ 1892  ceph health detail
+ 1893  while true; do ceph -s; sleep 5; done
+ 1894  ceph osd df
+ 1895  while true; do ceph -s; sleep 5; done
+ 1896  ceph df
+ 1897  ceph osd df
+ 1898  while true; do ceph -s; sleep 5; done
+ 1899  ceph osd df
+ 1900  ceph df
+ 1901  ceph health detail
+ 1902  while true; do ceph -s; sleep 5; done
+ 1903  ceph osd df
+ 1904  ceph df
+ 1905  while true; do ceph -s; sleep 5; done
+ 1906  ceph df
+ 1907  ceph osd df
+ 1908  while true; do ceph -s; sleep 5; done
+ 1909  ceph df
+ 1910  ceph osd df
+ 1911  while true; do ceph -s; sleep 5; done
+ 1912  ceph df
+ 1913  ceph osd df
+ 1914  while true; do ceph -s; sleep 5; done
+ 1915  ceph df
+ 1916  ceph osd df
+ 1917  while true; do ceph -s; sleep 5; done
+ 1918  ceph df
+ 1919  ceph osd df
+ 1920  while true; do ceph -s; sleep 5; done
+ 1921  ceph osd df
+ 1922  ceph df
+ 1923  while true; do ceph -s; sleep 5; done
+ 1924  watch ceph -s
+ 1925  ceph osd df
+ 1926  watch ceph -s
+ 1927  ceph df
+ 1928  watch ceph -s
+ 1929  ceph df
+ 1930  ceph osd df
+ 1931  watch ceph -s
+ 1932  ceph df
+ 1933  ceph osd df
+ 1934  watch ceph -s
+ 1935  ceph df
+ 1936  ceph osd df
+ 1937  watch ceph -s
+ 1938  ceph df
+ 1939  ceph osd df
+ 1940  ceph osd tree
+ 1941  ceph df
+ 1942  ceph osd df
+ 1943  watch ceph -s
+ 1944  ceph df
+ 1945  ceph osd df
+ 1946  watch ceph -s
+ 1947  ceph df
+ 1948  ceph osd df
+ 1949  watch ceph -s
+ 1950  ceph df
+ 1951  ceph osd df
+ 1952  watch ceph -s
+ 1953  ceph df
+ 1954  ceph osd df
+ 1955  watch ceph -s
+ 1956  ceph df
+ 1957  ceph osd df
+ 1958  watch ceph -s
+ 1959  ceph df
+ 1960  ceph osd df
+ 1961  watch ceph -s
+ 1962  ceph df
+ 1963  ceph osd df
+ 1964  watch ceph -s
+ 1965  ceph df
+ 1966  ceph osd df
+ 1967  watch ceph -s
+ 1968  ceph osd df
+ 1969  ceph df
+ 1970  watch ceph -s
+ 1971  ceph osd df
+ 1972  ceph df
+ 1973  watch ceph -s
+ 1974  ceph osd df
+ 1975  ceph df
+ 1976  watch ceph -s
+ 1977  ceph osd df
+ 1978  ceph df
+ 1979  watch ceph -s
+ 1980  ceph osd df
+ 1981  ceph df
+ 1982  ceph health details
+ 1983  ceph health detail
+ 1984  ls
+ 1985  ceph  version
+ 1986  ceph version
+ 1987  cd /etc/ceph/
+ 1988  ls
+ 1989  ceph -s
+ 1990  ls
+ 1991  vi PSceph.client.admin.keyring 
+ 1992  ls
+ 1993  vi ceph.client.admin.keyring
+ 1994  ls
+ 1995  ll
+ 1996  cd /etc/ceph/
+ 1997  ls
+ 1998  ll
+ 1999  history
+root@cphmntr01:~# 
+

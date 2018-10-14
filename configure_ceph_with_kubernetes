@@ -1,0 +1,75 @@
+https://akomljen.com/using-existing-ceph-cluster-for-kubernetes-persistent-storage/
+
+
+
+sudo ceph --cluster ceph auth get-key client.admin
+
+kubectl create secret generic ceph-secret \
+    --type="kubernetes.io/rbd" \
+    --from-literal=key='AQBwruNY/lEmCxAAKS7tzZHSforkUE85htnA/g==' \
+    --namespace=kube-system
+
+
+sudo ceph --cluster ceph osd pool create kube 1024 1024
+sudo ceph --cluster ceph auth get-or-create client.kube mon 'allow r' osd 'allow rwx pool=kube'
+sudo ceph --cluster ceph auth get-key client.kube
+
+kubectl create secret generic ceph-secret-kube \
+    --type="kubernetes.io/rbd" \
+    --from-literal=key='AQC/c+dYsXNUNBAAMTEW1/WnzXdmDZIBhcw6ug==' \
+    --namespace=kube-system
+
+cat <<EOF | kubectl create -f -
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: fast-rbd
+provisioner: ceph.com/rbd
+parameters:
+  monitors: <monitor-1-ip>:6789, <monitor-2-ip>:6789, <monitor-3-ip>:6789
+  adminId: admin
+  adminSecretName: ceph-secret
+  adminSecretNamespace: kube-system
+  pool: kube
+  userId: kube
+  userSecretName: ceph-secret-kube
+  userSecretNamespace: kube-system
+  imageFormat: "2"
+  imageFeatures: layering
+EOF
+
+
+cat <<EOF | kubectl create -f -
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: myclaim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi
+  storageClassName: fast-rbd
+EOF
+
+
+
+
+kubectl get pvc myclaim
+NAME      STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+myclaim   Bound     pvc-11559e19-2541-11e8-94dc-525400474652   8Gi        RWO            fast-rbd       1h
+
+
+
+
+
+
+rook-ceph
+
+https://www.linkedin.com/pulse/rookio-ceph-persistent-storage-made-easy-kubernetes-gokul-chandra/
+
+
+
+
+

@@ -1,0 +1,24 @@
+ceph auth get-key client.admin
+
+AQCaIr9b3dYvCRAA9u1iAksKYiE+9WEG8rOHvA==
+
+echo "AQCaIr9b3dYvCRAA9u1iAksKYiE+9WEG8rOHvA==" | base64
+
+QVFDYUlyOWIzZFl2Q1JBQTl1MWlBa3NLWWlFKzlXRUc4ck9IdkE9PQo=
+
+
+apiVersion: v1
+kind: Secret
+metadata:
+ name: ceph-secret
+data:
+ key: 
+  AQCaIr9b3dYvCRAA9u1iAksKYiE+9WEG8rOHvA==
+
+
+
+ rbd create test-image --pool data --image-format 1 --size 204800
+
+rbd create test-image --pool k8sadmin --image-format 1 --size 204800
+
+
