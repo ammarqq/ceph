@@ -1,7 +1,7 @@
 ceph-ansible
 ============
 
-https://conf.progressoft.com/display/SYSAD/Ceph
+https://github.com/ammarqq/ceph/tree/master/ceph-ansible
 
 Ansible playbook for Ceph!
 
